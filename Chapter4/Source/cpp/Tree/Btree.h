@@ -3,7 +3,6 @@
 #include <queue>
 #include <node.h>
 
-template <typename T>
 class BinaryTree{
 public:
     BinaryTree(bool is_bst){
@@ -15,155 +14,234 @@ public:
     }
 
 // Getter
-    T getData(Node<T> node);
-    Node<T> getParent(Node<T> child);
-    Node<T> getLeftChild(Node<t> parent);
-    Node<T> getRightChild(Node<T> parent);
-    Node<T> search(T data);
-
+    T getData(const Node* &node);
+    Node *getParent(const Node* &child);
+    Node *getLeftChild(const Node* &parent);
+    Node *getRightChild(const Node* &parent);
+    Node *search(const Node* &node=root, int data);
+    Node *getLeftmost(const Node* &node);
+    Node *getRightmost(const Node* &node);
 // Setter
-    T setData(Node<T> &node, T data);
+    void setData(Node* &node, int data);
 
 // Replace method
-    T replace(Node<T> &replaced, Node<T> &replacer);
+    void replace(Node* &replaced, Node* &replacer);
 
 // Delete method
-    T remove(T data);
-    T remove(Node<T> node);
-    T removeInBst();
+    bool remove(int data); // not completed
 
 // Checking method
     bool isEmpty();
-    bool isExist(T data, 
-            std::function < bool (const T &, const T &) > &comp);
+    bool isExist(const Node* &node=root, int data);
 
 // Travelsal method
-    void inorder_travelsal(std::function < void (const T ) > &print);
-    void preorder_travelsal(std::function < void (const T ) > &print);
-    void postorder_travelsal(std::function < void (const T ) > &print);
-    void levelorder_travelsal(std::function < void (const T ) > &print);
+    void inorder_travelsal(const Node* &node=root);
+    void preorder_travelsal(const Node* &node=root);
+    void postorder_travelsal(const Node* &node=root);
+    void levelorder_travelsal();
 
 // Insert method
-    void insert(Node<T> &node, bool left=true);
+    void insert(Node* &node, int data, bool left=true);
 
 private:
-    static Node<T> *root;
+    static Node *root;
     bool is_bst;
-    void insert_left(Node<T>* &node, T data);
-    void insert_right(Node<T>* &node, T data);
+    void insert_left(Node* &node, int data);
+    void insert_right(Node* &node, int data);
+    bool remove(Node* &node=root, int data);
+    bool removeInBst(Node* &node, int data); // not completed
 }
 
-template <typename T>
-T BinaryTree<T>:get_data(Node<T> node){
-
+int BinaryTree:getData(const Node* &node){
+    return node->data;
 }
 
-template <typename T>
-Node<T> BinaryTree<T>:get_parent(Node<T> child){
-
+Node *BinaryTree:getParent(const Node* &child){
+    return child->parent;
 }
 
-template <typename T>
-Node<T> BinaryTree<T>:search(T data){
-
+Node *BinaryTree:getLeftmost(const Node* node){
+    Node *leftmost;
+    for (Node *tmp = node; tmp != NULL; tmp=tmp->left)
+        leftmost = tmp;
+    return leftmost;
 }
 
-template <typename T>
-T BinaryTree<T>:set_data(Node<T> &node, T data){
-
+Node *BinaryTree:getRightmost(const Node* node){
+    Node *rightmost;
+    for (Node *tmp = node; tmp != NULL; tmp=tmp->right)
+        rightmost = tmp;
+    return rightmost;
 }
 
-template <typename T>
-T BinaryTree<T>:replace(Node<T> &replaced, Node<T> &replacer){
-
+Node *BinaryTree:search(const Node* &node, int data){
+    Node *tmp;
+    if (node->data == data)
+        return Node;
+    (tmp = search(node->left, data)) == NULL ?
+        (tmp = serach(node->right, data)) : (tmp);
+    return tmp;
 }
 
-template <typename T>
-T BinaryTree<T>:remove(T data){
-
+void BinaryTree:setData(Node* &node, int data){
+    node->data = data;
 }
 
-template <typename T>
-T BinaryTree<T>:remove(Node<T> node){
-
+void BinaryTree:replace(Node* &replaced, Node* &replacer){
+    if (replaced == replaced->parent->left){
+        replaced->parent->left = replacer;
+    }
+    else{
+        replaced->parent->right = replacer;
+    }
+    if (replacer){
+        replacer->parent = replaced->parent;
+        replacer->left = replaced->left;
+        replacer->right = replaced->right;
+    }
+    delete replaced;
 }
 
-template <typename T>
-T BinaryTree<T>:removeInBst(Node<T> node){
+bool BinaryTree:removeInBst(Node* &node, int data){
+    Node *removed = search(node, data);
+    if (removed){
+        if (removed->left){
+            Node *rightmost = getRightmost(removed->left);
+            if (rightmost->left){
+                rightmost->
+            }
+            else{
 
+            }
+        }
+        else{
+            Node *leftmost = getLeftmost(removed->right);
+        }
+        return true;
+    }
+    return false;
 }
 
+bool BinaryTree:remove(Node* &node, int data){
+    Node *removed = search(node, data);
+    if (removed){
+       replace(removed, NULL);
+       return true;
+    }
+    return false;
+}
 
-template <typename T>
-bool BinaryTree<T>:is_empty(){
+int BinaryTree:remove(int data){
+    if(is_bst)
+        return removeInBst(data);
+    else
+        return remove(root, data);
+}
+
+bool BinaryTree:is_empty(){
     return root != NULL ? true : false;
 }
 
-template <typename T>
-bool BinaryTree<T>:is_exist(T data,
-        std::function < bool (const T &, const T &) > &comp){
-    
+
+bool BinaryTree:isExist(const Node* &node, int data){
+    if(node == NULL)
+        return false;
+    if (node->data == data)
+        return true;
+    else
+        return isExist(node->left, data) || isExsit(node->right, data);
 }
 
-template <typename T>
-void BinaryTree<T>:inorder_travelsal(){
 
+void BinaryTree:inorder_travelsal(
+        const Node* &node=root)
+{
+    if (node == NULL)
+        return;
+    inorder_travelsal(node->left, print);
+    printf("%d\n", node->data);
+    inorder_travelsal(node->right, print);
 }
 
-template <typename T>
-void BinaryTree<T>:preorder_travelsal(){
 
+void BinaryTree:preorder_travelsal(
+        const Node* &node=root)
+{
+    if (node == NULL)
+        return;
+    printf("%d\n", node->data);
+    preorder_travelsal(node->right, print);
+    preorder_travelsal(node->right, print);
 }
 
-template <typename T>
-void BinaryTree<T>:postorder_travelsal(){
 
+void BinaryTree:postorder_travelsal(
+        const Node* &node=root)
+{
+    if (node == NULL)
+        return;
+    postorder_travelsal(node->left, print);
+    postorder_travelsal(node->left, print);
+    printf("%d\n", node->data);
 }
 
-template <typename T>
-void BinaryTree<T>:levelorder_travelsal(
-        std::function < void (const T ) > &print){
-    std::queue < Node<T> > que;
+
+void BinaryTree:levelorder_travelsal(){
+    std::queue < Node * > que;
     que.push(root);
     while(!que.empty()){
-        Node<T> now = que.front();
+        Node *now = que.front();
         que.pop();
-        print(now.data);
-        if (now.left)
-            que.push(now.left);
-        if (now.right)
-            que.push(now.right);
+        printf("%d\n", now->data);
+        if (now->left)
+            que.push(now->left);
+        if (now->right)
+            que.push(now->right);
     }
 }
 
-
-template <typename T>
-void BinaryTree<T>:insert_left(Node<T>* &parent, T data){
-    new_node = new Node<T>(T);
+void BinaryTree:insert_left(Node* &parent, int data){
+    new_node = new Node(data);
     parent->left = new_node;
 }
 
-template <typename T>
-void BinaryTree<T>:insert_right(Node<T>* &parent, T data){
-    new_node = new Node<T>(T);
+void BinaryTree:insert_right(Node* &parent, int data){
+    new_node = new Node(data);
     parent->right = new_node;
 }
 
-template <typename T>
-void BinaryTree<T>:insert_bst(Node<T> node=root, T data){
+void BinaryTree:insert_bst(Node* node, int data){
     
-}
+    if(node->data < data){
+        if (node->left)
+            insert_bst(node->left, data);
+        else
+            insert_left(node, data);
+    }
 
-template <typename T>
-void BinaryTree<T>:insert(Node<T> &node, bool left){
-    if (is_bst)
-        insert_bst(T data);
+    else if(node->data == data)
+        return;
+   
     else{
-    
+        if (node->right)
+            insert_bst(node->right, data);
+        else
+            insert_right(node, data);
     }
 }
 
-template <typename T>
-bool is_balanced(class BinaryTree<T> Btree){
+void BinaryTree:insert(Node* &node, int data, bool left){
+    if (root != NULL){
+        root = new Node(data);
+        root->parent = root;
+        return;
+    }
+    if (is_bst)
+        insert_bst(data);
+    else
+        left ? insert_left(node, data) : insert_right(node, data);
+}
 
+bool is_balanced(class BinaryTree Btree){
+    
 }
