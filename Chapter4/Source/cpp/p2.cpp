@@ -1,23 +1,27 @@
 #include <cstdio>
 #include <vector>
 #include <cmath>
+#include "Tree/BST.h"
 
-void inorder(const std::vector < std::vector < int > > &tree, int idx){
-    printf("%d ", tree[idx]);
+void solve(
+        class BinarySearchTree &bst,
+        int start, int end
+        )
+{
+    if (start > end)
+        return;
+    int mid = (start + end) / 2;
+    bst.insert(mid);
+    solve(bst, start, mid - 1);
+    solve(bst, mid + 1, end);
 }
 
 int main(void){
     int n, idx;
     int *a;
     scanf("%d", &n);
-    a = new int[n];
-    for (int i = 0; i < n; ++i)
-        a[i] = i;
-
-    std::vector < int > btree(1, 0);
-    
-
-    inorder(btree, 0);
-    delete a;
+    class BinarySearchTree bst;
+    solve(bst, 0, n - 1);
+    bst.print_inorder();
     return 0;
 }

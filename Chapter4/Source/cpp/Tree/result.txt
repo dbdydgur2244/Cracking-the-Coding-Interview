@@ -1,0 +1,78 @@
+Btree.h: In function 'bool isExist(const Node*&, const int&)':
+Btree.h:18:9: error: 'int Node::data' is private
+     int data;
+         ^
+Btree.h:153:15: error: within this context
+     if (node->data == data)
+               ^
+Btree.h:19:11: error: 'Node* Node::left' is private
+     Node *left;
+           ^
+Btree.h:156:30: error: within this context
+         return isExist(node->left, data) || isExsit(node->right, data);
+                              ^
+Btree.h:156:40: error: invalid initialization of reference of type 'const Node*&' from expression of type 'Node* const'
+         return isExist(node->left, data) || isExsit(node->right, data);
+                                        ^
+Btree.h:150:6: error: in passing argument 1 of 'bool isExist(const Node*&, const int&)'
+ bool isExist(const Node* &node, const int &data){
+      ^
+Btree.h:20:11: error: 'Node* Node::right' is private
+     Node *right;
+           ^
+Btree.h:156:59: error: within this context
+         return isExist(node->left, data) || isExsit(node->right, data);
+                                                           ^
+Btree.h:156:70: error: 'isExsit' was not declared in this scope
+         return isExist(node->left, data) || isExsit(node->right, data);
+                                                                      ^
+Btree.h: In member function 'bool BinaryTree::isExist(const int&)':
+Btree.h:161:30: error: no matching function for call to 'BinaryTree::isExist(Node*&, const int&)'
+     return isExist(root, data);
+                              ^
+Btree.h:161:30: note: candidates are:
+Btree.h:160:6: note: bool BinaryTree::isExist(const int&)
+ bool BinaryTree::isExist(const int &data){
+      ^
+Btree.h:160:6: note:   candidate expects 1 argument, 2 provided
+Btree.h:64:10: note: bool BinaryTree::isExist(const Node*&, const int&)
+     bool isExist(const Node* &node, const int &data);
+          ^
+Btree.h:64:10: note:   no known conversion for argument 1 from 'Node*' to 'const Node*&'
+Btree.h: At global scope:
+Btree.h:165:50: error: no 'void BinaryTree::inorder_travel(const Node*&)' member function declared in class 'BinaryTree'
+ void BinaryTree::inorder_travel(const Node* &node){
+                                                  ^
+Btree.h: In member function 'void BinaryTree::inorder_travelsal()':
+Btree.h:174:24: error: 'Inorder_travel' was not declared in this scope
+     Inorder_travel(root);
+                        ^
+Btree.h: At global scope:
+Btree.h:177:51: error: no 'void BinaryTree::preorder_travel(const Node*&)' member function declared in class 'BinaryTree'
+ void BinaryTree::preorder_travel(const Node* &node){
+                                                   ^
+Btree.h:185:40: error: no 'void BinaryTree::preorder_travelal()' member function declared in class 'BinaryTree'
+ void BinaryTree::preorder_travelal(void){
+                                        ^
+Btree.h:189:52: error: no 'void BinaryTree::postorder_travel(const Node*&)' member function declared in class 'BinaryTree'
+ void BinaryTree::postorder_travel(const Node* &node){
+                                                    ^
+Btree.h: In member function 'void BinaryTree::postorder_travelsal()':
+Btree.h:198:26: error: 'postorder_travel' was not declared in this scope
+     postorder_travel(root);
+                          ^
+Btree.h: In member function 'void BinaryTree::insert_left(const Node*&, const int&)':
+Btree.h:217:5: error: 'new_node' was not declared in this scope
+     new_node = new Node(data);
+     ^
+Btree.h: In member function 'void BinaryTree::insert_right(const Node*&, const int&)':
+Btree.h:222:5: error: 'new_node' was not declared in this scope
+     new_node = new Node(data);
+     ^
+Btree.h: At global scope:
+Btree.h:226:6: error: prototype for 'void BinaryTree::insert(const Node*&, const int&, bool)' does not match any in class 'BinaryTree'
+ void BinaryTree::insert(const Node* &node, const int &data, bool left){
+      ^
+Btree.h:59:10: error: candidate is: void BinaryTree::insert(const Node*&, const int&, const bool&)
+     void insert(const Node* &node, const int &data, const bool &left=true);
+          ^
