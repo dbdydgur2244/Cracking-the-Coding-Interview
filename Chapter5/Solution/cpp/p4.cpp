@@ -3,11 +3,10 @@
 
 std::vector <int> getBit(int n){
     std::vector < int > v;
-    for (int i = 0; i < 32; ++i){
-        if (n < (1 << i))
-            break;
+    for (int i = 0; i < 31; ++i){
         v.push_back( (n & (1 << i)) == 0 ? 0 : 1);
     }
+    v.push_back(1);
     return v;
 }
 
@@ -20,7 +19,7 @@ int main(void){
 
     std::reverse(orig.begin(), orig.end());
     std::reverse(small.begin(), small.end());
-    std::reverse(large.begin(), small.end());
+    std::reverse(large.begin(), large.end());
 
     std::prev_permutation(small.begin(), small.end());
     std::next_permutation(large.begin(), large.end());
