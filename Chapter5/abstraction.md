@@ -18,6 +18,7 @@ The logical right shift does what we would visually see as shifting the bits
 
 '>>>'로 가능
 
+c언어의 기준으로는 unsigned인 경우 logical right shift, 아닌 경우arithmetic right shift임.
 
 
 ## Common Bit Tasks: Getting and Setting
