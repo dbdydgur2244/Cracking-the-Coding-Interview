@@ -59,6 +59,20 @@ int clearBit(int num, int i){
 ```
 
 
+```c++
+int clearBitMSBthroughI(int num, int i){
+    int mask = (1 << i) - 1;
+    return num & mask;
+}
+```
+
+```c++
+int clearBitIthrough0(int num, int i){
+    int mask = (-1 << (i + 1));
+    return num & mask;
+}
+```
+
 
 ### Update Bit
 
@@ -73,7 +87,6 @@ int updateBit(int num, int i, bool bit){
     return (num & mask) | (value << i);
 }
 ```
-
 
 
 ## 재밌는 것들
