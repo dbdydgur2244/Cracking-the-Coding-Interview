@@ -39,7 +39,7 @@
 
 10. binary tree인 경우 inorder와 preorder 순회 결과를 알고 있으면 unique한 tree 구성 가능. 따라서 그 결과를 string화 해서 T1의 결과와 KMP 사용하여 substring인 경우 true 아니면 false.
 
-   > N개의 subtree를 가지는 경우 아호코라식을 사용하면 됨.
+  > N개의 subtree를 가지는 경우 아호코라식을 사용하면 됨.
 
 
 11. 무슨 말일까…? 이해를 못하겠음
