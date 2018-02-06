@@ -8,7 +8,7 @@ Design pattern 보다는 성능에 중점을 둔다고 함.
 
 
 
-##Object-Oriented Design
+## Object-Oriented Design
 
 ### STEP 1: handle Ambiguity
 
